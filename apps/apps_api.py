@@ -7,6 +7,7 @@ from flask_restful import Api,Resource
 # H2O
 import h2o
 import pandas as pd
+import json
 h2o.init()
 ## load saved model
 model_path = '../models/StackedEnsemble_AllModels_3_AutoML_1_20220615_221514'
@@ -56,7 +57,7 @@ def prediction(model, json_obj=None):
     to_predict = h2o.H2OFrame(df)
     uploaded_model = model
     
-    return uploaded_model.predict(to_predict).as_data_frame().to_json(orient='records')
+    return json.loads(uploaded_model.predict(to_predict).as_data_frame().to_json(orient='records'))
 
 
 app = Flask(__name__)
