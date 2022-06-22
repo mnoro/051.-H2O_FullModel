@@ -31,5 +31,6 @@ api.add_resource(HelloWorld, '/hello')
 api.add_resource(PrintSquare, '/sq')
 api.add_resource(PrintSum, '/sum')
 
+
 if __name__ == '__main__':
     app.run(debug=True, port = 12345)
